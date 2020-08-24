@@ -21,6 +21,12 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
  end
  
+ def show 
+    @micropost = Micropost.find(params[:id])
+    @comment = Comment.new
+    @user = User.find_by(id: @micropost.user_id)
+ end
+ 
  private
 
     def micropost_params
