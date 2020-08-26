@@ -21,6 +21,12 @@
     <div class="col-md-8">
       <h3>Micropost Feed</h3>
       <%= render 'shared/feed' %>
+      <hr/>
+      <h4>いいねしている投稿</h4>
+        <% @user.liked_microposts.each do |micropost| %>
+          <%= micropost.user.email %>
+          <%= micropost.content %>
+        <% end %>
     </div>
   </div>
 <% else %>
