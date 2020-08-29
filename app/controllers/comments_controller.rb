@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
     @comment = @micropost.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
+      @micropost.create_notification_comment!(current_user, @comment.id)
       redirect_to micropost_path(@micropost)
     else
       render "microposts/show"

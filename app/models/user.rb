@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_microposts, through: :likes, source: :micropost
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -93,6 +95,17 @@ class User < ApplicationRecord
     self.likes.exists?(micropost_id: micropost.id)
   end
   
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+      if temp.blank?
+        notification = current_user.active_notifications.new(
+          visited_id: id,
+          action: 'follow'
+        )
+        notification.save if notification.valid?
+      end
+  end
+  
   private
   
     def downcase_email
@@ -103,4 +116,5 @@ class User < ApplicationRecord
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
     end
+    
 end
