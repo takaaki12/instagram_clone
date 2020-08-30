@@ -1,5 +1,7 @@
-<li id="micropost-<%= micropost.id %>">
-  <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+<h1>Search Results</h1>
+<ul><% @microposts.each do |micropost| %>
+  <ol class="microposts">
+    <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
     <%= micropost.content %>
@@ -13,4 +15,7 @@
                                        data: { confirm: "You sure?" } %>
     <% end %>
   </span>
-</li>
+  <hr>
+  <% end %>
+  </ol>
+</ul>
