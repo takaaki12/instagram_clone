@@ -1,5 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 /* mixins, variables, etc. */
 
@@ -295,6 +297,3 @@ span.image {
     border: 0;
   }
 }
-
-@import "font-awesome-sprockets";
-@import "font-awesome";
