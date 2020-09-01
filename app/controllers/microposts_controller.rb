@@ -29,7 +29,11 @@ class MicropostsController < ApplicationController
  end
  
  def search
-     @microposts = Micropost.search(params[:search])
+    @microposts = Micropost.search(params[:search])
+ end
+ 
+ def form
+    @micropost  = current_user.microposts.build
  end
  
  private

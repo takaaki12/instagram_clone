@@ -6,16 +6,5 @@ class StaticPagesController < ApplicationController
       @users = current_user.following.paginate(page: params[:page])
    end
   end
-
-  def help
-  end
   
-  def about
-  end
-  
-  def contact
-  end
-  
-  def search
-  end
 end

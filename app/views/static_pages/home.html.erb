@@ -7,9 +7,6 @@
       <section class="stats">
         <%= render 'shared/stats' %>
       </section>
-      <section class="micropost_form">
-        <%= render 'shared/micropost_form' %>
-      </section>
       <% if @users.any? %>
         <div class="user_avatars">
           <% @users.each do |user| %>
@@ -17,6 +14,9 @@
           <% end %>
         </div>
       <% end %>
+      <div class ="micropost_form">
+        <%= link_to "Micropost Form", form_path %></li>
+      </div>
     </aside>
     <div class="col-md-8">
       <h3>Micropost Feed</h3>
