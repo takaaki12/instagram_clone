@@ -14,7 +14,7 @@ class Micropost < ApplicationRecord
                                       message: "should be less than 5MB" }
                                       
   def display_image
-    image.variant(resize_to_fill: [500, 500, gravity: "Center"])
+    image.variant(resize_to_fill: [200, 200, gravity: "Center"])
   end
   
   def create_notification_like!(current_user)
