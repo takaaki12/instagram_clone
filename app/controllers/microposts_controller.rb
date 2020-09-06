@@ -36,6 +36,11 @@ class MicropostsController < ApplicationController
     @micropost  = current_user.microposts.build
  end
  
+ def modal
+    @micropost = Micropost.find(params[:id])
+    @user = User.find(@micropost_params[:id])
+ end
+ 
  private
 
     def micropost_params
