@@ -29,10 +29,46 @@
                     <%= micropost.content %>
                     
                     <!-- Button trigger modal -->
-                    <span data-toggle="modal" data-target="#imageModal">
+                    <span data-toggle="modal" data-target="#imageModal-<%= micropost.id %>">
                      <%= image_tag micropost.display_image if micropost.image.attached? %>
                     </span>
                     
+                    <!-- Modal -->
+                    <div class="modal fade" id="imageModal-<%= micropost.id %>" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="imageModalLabel">Comments</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                              <span class="modal-content_image">
+                                <div id="micropost_area">
+                                  <%= micropost.content %><br>
+                                  <%= image_tag micropost.display_image if micropost.image.attached? %>
+                                </div>
+                              </span><br>
+                            <hr/>
+                            <!--コメント表示-->
+                            <div class="comment_index">
+                              <% micropost.comments.each do |comment| %>
+                                     <p><%= link_to gravatar_for(comment.user, size: 50), comment.user %>
+                                     <%= link_to "#{comment.user.name}" , comment.user %>: <%= comment.body %></p>
+                                     <span class= "batu"><%= link_to "delete" , [micropost,comment] , method: :delete if current_user?(comment.user) %></span>
+                                <hr/>
+                              <% end %>
+                            </div>
+                            
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <%= link_to "Comment and good!", micropost_path(micropost.id) %>
                     </span>
                   <span class="timestamp">
@@ -45,8 +81,7 @@
                 </section>
               </div>
             <% end %>
-            
-           
+
           </div>
         <% end %>
         
@@ -54,37 +89,3 @@
     <% end %>
   </div>
 </div>
-
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="imageModalLabel">Comments</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                              <span class="modal-content_image">
-                                <%= @micropost.content %><br>
-                                <%= image_tag @micropost.display_image if @micropost.image.attached? %>
-                              </span><br>
-                            <hr/>
-                            <!--コメント表示-->
-                            <div class="modal_micropost-commet">
-                              <% @micropost.comments.each do |comment| %>
-                                     <p><%= link_to gravatar_for(comment.user, size: 50), comment.user %></p>
-                                     <%= link_to "#{comment.user.name}" , @comment_user %>: <%= comment.body %>
-                                <hr/>
-                              <% end %>
-                            </div>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--ここまで戻す
