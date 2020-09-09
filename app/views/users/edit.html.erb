@@ -12,16 +12,12 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-      
       <%= f.label :introduction %>
       <%= f.text_area :introduction, class: 'form-control', id: 'user_introduction' %>
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
+      
+      <%= link_to "Change Password", change_password_user_path(@user.id) %>
     <% end %>
 
     <div class="gravatar_edit">

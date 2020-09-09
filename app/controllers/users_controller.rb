@@ -64,7 +64,10 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
-
+  
+  def change_password
+    @user = User.find(params[:id])
+  end
   
   private
 
