@@ -22,8 +22,11 @@
               <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li class="divider"></li>
+              <li><%= link_to "Log out", logout_path, method: :delete %></li>
               <li>
-                <%= link_to "Log out", logout_path, method: :delete %>
+                <button type="button" class="btn btn-dark">
+                  <%= link_to "Your Account Destroy", user_path(current_user), method: :destroy %>
+                </button>
               </li>
             </ul>
           </li>
