@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user, only: [:edit, :update]
-  before_action :specific_user,     only: :destroy
-
   
   def index
     @users = User.paginate(page: params[:page])
@@ -37,7 +35,7 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    if @user.update(update_user_params)
+    if @user.update(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
     else
@@ -47,8 +45,8 @@ class UsersController < ApplicationController
   
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
-    redirect_to users_url
+    flash[:success] = "Your Account deleted"
+    redirect_to root_url
   end
   
   def following
@@ -73,11 +71,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
-    end
-    
-    def update_user_params
-      params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation, :introduction, :sex,
                                    :phone_number, :user_name, :websiteurl)
     end
@@ -87,13 +80,5 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user?(@user)
     end
     
-    def specific_user
-      if current_user.admin?
-      elsif
-        current_user == User.find(params[:id])
-      else
-        redirect_to(root_url) 
-      end
-    end
     
 end
