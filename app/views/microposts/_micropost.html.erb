@@ -5,7 +5,7 @@
     <%= micropost.content %>
     <%= image_tag micropost.display_image if micropost.image.attached? %>
     <div class="home-comment">
-    <%= link_to "Comment and good!", micropost_path(micropost.id) %>
+    <%= link_to "This Post's Page", micropost_path(micropost.id) %>
     </div>
   </span>
   <span class="home-timestamp">

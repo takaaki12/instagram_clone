@@ -1,6 +1,8 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-default">
   <div class="container">
-    <%= link_to "Clone Instagram", root_path, id: "logo" %>
+    <%= link_to root_path, id: "logo" do %>
+    <img src="https://fontmeme.com/permalink/200913/8d445f5d9edcb469ef48521bd494655b.png" alt="font-instagram" border="0">
+    <% end %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
@@ -9,9 +11,9 @@
             <% end %>
         </li>
           <li><%= render 'shared/circle' %></li>
-        <% end %>
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Me", current_user %></li>
+        <% end %>
         <% if logged_in? %>
           <li><%= link_to "Users", users_path %></li>
           <li class="dropdown">

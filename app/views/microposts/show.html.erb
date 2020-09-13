@@ -17,11 +17,15 @@
   <!--　いいね   -->
   <h2>いいね件数: <%= @micropost.likes.count %></h2>
     <% if current_user.already_liked?(@micropost) %>
-      <%= button_to 'いいねを取り消す', micropost_like_path(@micropost), method: :delete %>
+      <%= link_to micropost_like_path(@micropost), method: :delete do %>
+        <i class="far fa-heart unlike-btn" ></i>
+      <% end %>
     <% else %>
-      <%= button_to 'いいね', micropost_likes_path(@micropost) %>
+      <%= link_to micropost_likes_path(@micropost), method: :post do %>
+        <i class="far fa-heart like-btn" ></i>
+      <% end %>
     <% end %>
-    <h1>いいねしたユーザー</h1>
+    <p>Liked User</p>
     <% @micropost.liked_users.each do |user| %>
       <p><%= link_to gravatar_for(user, size: 50), user %></p>
       <%= link_to "#{user.name}" , @user %>

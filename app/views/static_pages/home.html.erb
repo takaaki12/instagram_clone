@@ -22,22 +22,10 @@
       <h3>Micropost Feed</h3>
       <%= render 'shared/feed' %>
       <hr/>
-      <h4>いいねしている投稿</h4>
-        <% @user.liked_microposts.each do |micropost| %>
-          <%= micropost.user.email %>
-          <%= micropost.content %>
-        <% end %>
     </div>
   </div>
 <% else %>
   <div class="center jumbotron">
-    <h1>Welcome to the Sample App</h1>
-  
-    <h2>
-      This is the home page for the
-      <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-      sample application.
-    </h2>
-  
+    <h1>Welcome to the Instagram Clone</h1>
     <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
 <% end %>

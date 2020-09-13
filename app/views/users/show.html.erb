@@ -7,6 +7,7 @@
         <%= @user.name %>
       </h1>
       <p>ID: <%= @user.user_name %></p>
+      <p><%= link_to "Settings", edit_user_path(current_user) %></p>
     </section>
     <section>
       <%= @user.introduction %>
@@ -39,7 +40,7 @@
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="imageModalLabel">Comments</h5>
+                            <h5 class="modal-title" id="imageModalLabel"> This Post's Comments</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
@@ -70,7 +71,7 @@
                       </div>
                     </div>
 
-                    <%= link_to "Comment and good!", micropost_path(micropost.id) %>
+                    <%= link_to "This Post's Page", micropost_path(micropost.id) %>
                     </span>
                   <span class="timestamp">
                     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
