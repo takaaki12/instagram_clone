@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
+  validates_acceptance_of :agreement, allow_nil: false, on: :create
   before_save   :downcase_email
   before_create :create_activation_digest
   validates :name,  presence: true, length: { maximum: 50 }
@@ -26,6 +27,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :introduction, presence: false, length: { maximum: 50 }
   validates :phone_number, presence: false, length: { maximum: 11 }
+
   
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

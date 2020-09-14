@@ -31,6 +31,12 @@ textarea {
   h1 {
     margin-bottom: 10px;
   }
+  .welcomespace {
+    margin-top: 20px;
+    .welcome {
+      font-size: 2em;
+    }
+  }
 }
 
 /* typography */
@@ -319,3 +325,8 @@ span.image {
  color: #e54747;
  margin-left: 20px;
  }
+ 
+ .cursor {
+  cursor:  pointer;       /* カーソルの種類指定 */
+}
+
